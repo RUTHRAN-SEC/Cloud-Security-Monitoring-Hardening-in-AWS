@@ -31,7 +31,8 @@ See [`architecture/architecture.md`](architecture/architecture.md) for the full
 diagram and data flow explanation.
 
 ```
-IAM Users → AWS Account (EC2, S3) → CloudTrail Logs → GuardDuty
+          → AWS Account (EC2, S3) → CloudTrail Logs → GuardDuty
+IAM Users 
           → Lambda → SNS Alerts → Email Notifications
 ```
 
