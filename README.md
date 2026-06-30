@@ -1,6 +1,5 @@
 # Cloud Security Monitoring & Hardening in AWS
 
-**Portfolio project for SOC Analysts & Cloud Security Engineers**
 
 A hands-on AWS security lab demonstrating environment setup, audit logging, threat
 detection, alerting, incident investigation, security hardening, and automated
