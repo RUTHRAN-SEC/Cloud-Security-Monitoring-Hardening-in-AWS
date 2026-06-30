@@ -27,7 +27,7 @@ Build a secure AWS environment and implement:
 
 ## Architecture
 
-See [`architecture/architecture.md`](architecture/architecture.md) for the full
+See [`Architecture/architecture.md`](Architecture/architecture.md) for the full
 diagram and data flow explanation.
 
 ```
