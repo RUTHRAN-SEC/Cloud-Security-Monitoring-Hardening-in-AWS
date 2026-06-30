@@ -1,9 +1,9 @@
 # Cloud Security Monitoring & Hardening in AWS
 
 
-A hands-on AWS security lab demonstrating environment setup, audit logging, threat
+A hands on AWS security lab demonstrating environment setup, audit logging, threat
 detection, alerting, incident investigation, security hardening, and automated
-response — built to be showcased on GitHub, LinkedIn, your resume, and discussed
+response built to be showcased on GitHub, LinkedIn, your resume, and discussed
 in interviews.
 
 ![Status](https://img.shields.io/badge/status-in--progress-yellow)
@@ -76,8 +76,6 @@ IAM Users → AWS Account (EC2, S3) → CloudTrail Logs → GuardDuty
 aws-security-lab/
 │
 ├── README.md
-├── LICENSE
-├── .gitignore
 │
 ├── architecture/
 │   └── architecture.md
@@ -134,7 +132,7 @@ checklist.
 ## Lessons Learned
 
 See [phase11-lessons-learned.md](docs/phases/phase11-lessons-learned.md) for a
-write-up template — fill this in with your own takeaways once you've completed
+write up template — fill this in with your own takeaways once you've completed
 the lab. This is one of the most important sections for interviews.
 
 ## Future Improvements
@@ -147,12 +145,5 @@ the lab. This is one of the most important sections for interviews.
 
 ---
 
-## Disclaimer
-
-This is a personal lab environment for learning purposes. Always tear down
-resources after use to avoid unexpected AWS charges, and never expose real
-credentials, account IDs, or sensitive data in screenshots or commits.
-
-## License
-
-This project is licensed under the [MIT License](LICENSE).
+### DONE BY 
+#### RUTHRAN-SEC
