@@ -99,7 +99,7 @@ aws-security-lab/
 │   ├── lambda_function.py
 │   └── README.md
 │
-└── screenshots/
+└── ScreenShots/
     ├── 01-ec2-created.png
     ├── 02-s3-created.png
     ├── ...
@@ -110,10 +110,10 @@ aws-security-lab/
 
 ## Screenshots
 
-All evidence screenshots live in [`screenshots/`](ScreenShots/), numbered in the
+All evidence screenshots live in [`ScreenShots/`](ScreenShots/), numbered in the
 order they're taken throughout the phases. Each phase doc lists the exact
 filenames expected for that phase — drop your own screenshots in as you complete
-each step. See [`screenshots/README.md`](ScreenShots/README.md) for the full
+each step. See [`ScreenShots/README.md`](ScreenShots/README.md) for the full
 checklist.
 
 ---
