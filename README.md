@@ -1,5 +1,5 @@
 # Cloud Security Monitoring & Hardening in AWS
-
+ 
 
 A hands on AWS security lab demonstrating environment setup, audit logging, threat
 detection, alerting, incident investigation, security hardening, and automated
