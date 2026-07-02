@@ -23,7 +23,7 @@ Build a secure AWS environment and implement:
 - Security hardening
 - Automated response
 
----
+--- 
 
 ## Architecture
 
