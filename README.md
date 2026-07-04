@@ -6,7 +6,6 @@ detection, alerting, incident investigation, security hardening, and automated
 response built to be showcased on GitHub, LinkedIn, your resume, and discussed
 in interviews.
 
-![Status](https://img.shields.io/badge/status-in--progress-yellow)
 ![AWS](https://img.shields.io/badge/cloud-AWS-orange)
 ![Focus](https://img.shields.io/badge/focus-Cloud%20Security-blue)
 
@@ -77,8 +76,8 @@ aws-security-lab/
 ├── architecture/
 │   └── architecture.md
 │
-├── docs/
-│   └── phases/
+├
+│── phases/
 │       ├── phase1-environment-setup.md
 │       ├── phase2-cloudtrail-logging.md
 │       ├── phase3-guardduty-monitoring.md
@@ -96,10 +95,7 @@ aws-security-lab/
 │   └── README.md
 │
 └── ScreenShots/
-    ├── 01-ec2-created.png
-    ├── 02-s3-created.png
-    ├── ...
-    └── 39-s3-block-public-access.png
+    ├── (All screenshots)
 ```
 
 ---
