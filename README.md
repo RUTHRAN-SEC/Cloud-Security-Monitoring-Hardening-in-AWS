@@ -30,11 +30,7 @@ Build a secure AWS environment and implement:
 See [`Architecture/architecture.md`](Architecture/architecture.md) for the full
 diagram and data flow explanation.
 
-```
-          → AWS Account (EC2, S3) → CloudTrail Logs → GuardDuty
-IAM Users 
-          → Lambda → SNS Alerts → Email Notifications
-```
+<img width="1536" height="1024" alt="ChatGPT Image Jun 30, 2026, 07_57_11 PM" src="https://github.com/user-attachments/assets/33b736d9-0dc1-42ab-9541-1f4b23dd5844" />
 
 ---
 
