@@ -52,17 +52,17 @@ diagram and data flow explanation.
 
 | Phase | Topic | Docs |
 |---|---|---|
-| 1 | Environment Setup (EC2, S3, IAM, Security Groups) | [phase1-environment-setup.md](docs/phases/phase1-environment-setup.md) |
-| 2 | CloudTrail Logging | [phase2-cloudtrail-logging.md](docs/phases/phase2-cloudtrail-logging.md) |
-| 3 | GuardDuty Monitoring | [phase3-guardduty-monitoring.md](docs/phases/phase3-guardduty-monitoring.md) |
-| 4 | S3 Misconfiguration Detection | [phase4-s3-misconfiguration.md](docs/phases/phase4-s3-misconfiguration.md) |
-| 5 | IAM Privilege Escalation Detection | [phase5-iam-privilege-escalation.md](docs/phases/phase5-iam-privilege-escalation.md) |
-| 6 | Unauthorized API Request Detection | [phase6-unauthorized-api-requests.md](docs/phases/phase6-unauthorized-api-requests.md) |
-| 7 | SNS Alerting | [phase7-sns-alerting.md](docs/phases/phase7-sns-alerting.md) |
-| 8 | Lambda Automation | [phase8-lambda-automation.md](docs/phases/phase8-lambda-automation.md) |
-| 9 | Security Hardening | [phase9-security-hardening.md](docs/phases/phase9-security-hardening.md) |
-| 10 | Threat Investigation Scenarios | [phase10-threat-investigation.md](docs/phases/phase10-threat-investigation.md) |
-| 11 | Lessons Learned & Future Improvements | [phase11-lessons-learned.md](docs/phases/phase11-lessons-learned.md) |
+| 1 | Environment Setup (EC2, S3, IAM, Security Groups) | [phase1-environment-setup.md](phases/phase1-environment-setup.md) |
+| 2 | CloudTrail Logging | [phase2-cloudtrail-logging.md](phases/phase2-cloudtrail-logging.md) |
+| 3 | GuardDuty Monitoring | [phase3-guardduty-monitoring.md](phases/phase3-guardduty-monitoring.md) |
+| 4 | S3 Misconfiguration Detection | [phase4-s3-misconfiguration.md](phases/phase4-s3-misconfiguration.md) |
+| 5 | IAM Privilege Escalation Detection | [phase5-iam-privilege-escalation.md](phases/phase5-iam-privilege-escalation.md) |
+| 6 | Unauthorized API Request Detection | [phase6-unauthorized-api-requests.md](phases/phase6-unauthorized-api-requests.md) |
+| 7 | SNS Alerting | [phase7-sns-alerting.md](phases/phase7-sns-alerting.md) |
+| 8 | Lambda Automation | [phase8-lambda-automation.md](phases/phase8-lambda-automation.md) |
+| 9 | Security Hardening | [phase9-security-hardening.md](phases/phase9-security-hardening.md) |
+| 10 | Threat Investigation Scenarios | [phase10-threat-investigation.md](phases/phase10-threat-investigation.md) |
+| 11 | Lessons Learned & Future Improvements | [phase11-lessons-learned.md](phases/phase11-lessons-learned.md) |
 
 ---
 
@@ -76,7 +76,6 @@ aws-security-lab/
 ├── architecture/
 │   └── architecture.md
 │
-├
 │── phases/
 │       ├── phase1-environment-setup.md
 │       ├── phase2-cloudtrail-logging.md
@@ -124,17 +123,8 @@ checklist.
 
 ## Lessons Learned
 
-See [phase11-lessons-learned.md](docs/phases/phase11-lessons-learned.md) for a
-write up template — fill this in with your own takeaways once you've completed
+See the [phase11-lessons-learned.md](phases/phase11-lessons-learned.md) for a write up template fill this in with your own takeaways once you've completed
 the lab. This is one of the most important sections for interviews.
-
-## Future Improvements
-
-- Infrastructure as Code (Terraform/CloudFormation) for repeatable deployment
-- AWS Config for continuous compliance checks
-- Security Hub custom insights and automated remediation playbooks
-- Multi-account setup with AWS Organizations + centralized GuardDuty/Security Hub
-- Integration with a SIEM (e.g., Splunk, Wazuh, or OpenSearch) for log correlation
 
 ---
 
