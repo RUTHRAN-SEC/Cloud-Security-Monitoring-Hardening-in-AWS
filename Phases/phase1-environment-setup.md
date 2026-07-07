@@ -193,14 +193,3 @@ and scoped to the exact permissions the service needs.
 | Private by Default | S3 with Block Public Access enabled |
 | Role-Based Access | Lambda uses a role, not a user's credentials |
 | Defense in Depth | Network (SG) + Identity (IAM) + Storage (S3) controls together |
-
----
-
-## Phase 1 Checklist
-
-- [ ] EC2 instance running in chosen region
-- [ ] Security group SSH locked to My IP — confirmed, not `0.0.0.0/0`
-- [ ] S3 bucket created with Block Public Access enabled
-- [ ] IAM user `SecurityAnalyst` created with ReadOnlyAccess only
-- [ ] IAM role `LambdaExecutionRole` created with correct policies
-- [ ] All five screenshots captured and saved to `screenshots/`
