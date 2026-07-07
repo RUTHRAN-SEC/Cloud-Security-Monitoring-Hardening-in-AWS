@@ -1,10 +1,10 @@
-# Phase 1 — Build the Base Infrastructure
+# Phase 1 - Build the Base Infrastructure
 
 ## Objective
 
 Deploy the core AWS resources that every later phase depends on.
-This phase simulates a real-world cloud environment with a compute server,
-object storage, identity controls, and network firewall rules — all configured
+This phase simulates a real world cloud environment with a compute server,
+object storage, identity controls, and network firewall rules all configured
 from the start with security best practices.
 
 ---
@@ -39,7 +39,7 @@ from the start with security best practices.
 
 The EC2 instance represents a production server. In later phases it becomes
 the subject of CloudTrail log entries, security group investigations, and
-GuardDuty threat findings — the same role a real server would play in a live
+GuardDuty threat findings the same role a real server would play in a live
 security investigation.
 
 > 📸 Screenshot → `screenshots/01-ec2-created.png`
