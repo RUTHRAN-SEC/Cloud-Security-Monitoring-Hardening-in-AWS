@@ -35,14 +35,14 @@ from the start with security best practices.
 | Key Pair | RSA — create new and download |
 | Security Group | `SecurityLab-SG` (created in Step 2) |
 
-### Why this matters
-
 The EC2 instance represents a production server. In later phases it becomes
 the subject of CloudTrail log entries, security group investigations, and
 GuardDuty threat findings the same role a real server would play in a live
 security investigation.
 
-> 📸 Screenshot → `screenshots/01-ec2-created.png`
+Screenshot → [EC2 Instance is Running](../ScreenShots/1.EC2%20instaces%20is%20running.png)
+
+
 
 ---
 
@@ -61,7 +61,7 @@ security investigation.
 | 80 | HTTP | Anywhere (`0.0.0.0/0`) | Allows web traffic |
 | 443 | HTTPS | Anywhere (`0.0.0.0/0`) | Allows secure web traffic |
 
-### ⚠️ Critical Rule
+### Critical Rule
 
 SSH must be set to **My IP only** — never `0.0.0.0/0`.
 Opening SSH to the world is one of the most common misconfigurations
@@ -73,7 +73,7 @@ here from the start.
 **Network Security / Least Exposure** — only open ports that are actually
 needed, from sources that should legitimately need access.
 
-> 📸 Screenshot → `screenshots/05-security-group.png`
+Screenshot → [Security Group Rules Created](../ScreenShots/5.Created%20rules%20in%20the%20security%20group.png)
 
 ---
 
@@ -87,7 +87,7 @@ needed, from sources that should legitimately need access.
 |---|---|
 | Bucket Name | `security-monitoring-lab` |
 | Region | Same region as EC2 |
-| Block Public Access | ✅ Enabled |
+| Block Public Access | Enabled |
 | Versioning | Optional but recommended |
 
 ### Purpose
@@ -106,7 +106,7 @@ catch it — then we fix it in Phase 9.
 **Data Security** — storage should be private by default. Exposure must be
 a deliberate, justified action — not the default state.
 
-> 📸 Screenshot → `screenshots/02-s3-created.png`
+Screenshot → [S3 Bucket Created](../ScreenShots/2.S3%20Bucket%20Created.png)
 
 ---
 
@@ -125,15 +125,15 @@ a deliberate, justified action — not the default state.
 ### Purpose
 
 This user simulates a SOC analyst. With `ReadOnlyAccess` they can:
-- View CloudTrail logs ✅
-- Read S3 bucket contents ✅
-- Review IAM policies and users ✅
-- Investigate GuardDuty findings ✅
+- View CloudTrail logs
+- Read S3 bucket contents 
+- Review IAM policies and users
+- Investigate GuardDuty findings 
 
 But they **cannot**:
-- Modify IAM policies ❌
-- Delete resources ❌
-- Create access keys for other users ❌
+- Modify IAM policies
+- Delete resources
+- Create access keys for other users
 
 ### Security Concept Demonstrated
 
@@ -141,7 +141,7 @@ But they **cannot**:
 the job. A SOC analyst needs to read and investigate, not write or delete.
 In Phase 5 we will simulate what happens when this principle is violated.
 
-> 📸 Screenshot → `screenshots/03-iam-user-created.png`
+Screenshot → [Security Analyst Role Created in IAM](../ScreenShots/3.Security%20Analyst%20role%20created%20in%20IAM.png)
 
 ---
 
@@ -170,17 +170,18 @@ pipeline. Lambda needs permission to send SNS emails — but only Lambda
 should have that permission. By creating a dedicated role we keep
 permissions scoped and auditable.
 
-> **Note for production:** `AmazonSNSFullAccess` is broader than needed.
-> In a real environment scope this down to `sns:Publish` on the specific
-> topic ARN only. We address this in Phase 9 — Security Hardening.
+- **Note for production:** `AmazonSNSFullAccess` is broader than needed.
+- In a real environment scope this down to `sns:Publish` on the specific
+- topic ARN only. We address this in Phase 9 — Security Hardening.
 
 ### Security Concept Demonstrated
 
-**Role-Based Access Control (RBAC)** — services should authenticate via
+**Role Based Access Control (RBAC)** — services should authenticate via
 roles, not long-lived user credentials. IAM roles are temporary, audited,
 and scoped to the exact permissions the service needs.
 
-> 📸 Screenshot → `screenshots/04-iam-role-created.png`
+Screenshot → [Lambda Execution Role Created in IAM](../ScreenShots/4.Lambda%20execution%20role%20created%20in%20IAM.png)
+
 
 ---
 
