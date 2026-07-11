@@ -192,5 +192,5 @@ Screenshot → [Lambda Execution Role Created in IAM](../ScreenShots/4.Lambda%20
 | Least Privilege | IAM user with ReadOnly; Lambda role scoped to SNS |
 | Least Exposure | Security group SSH restricted to My IP only |
 | Private by Default | S3 with Block Public Access enabled |
-| Role-Based Access | Lambda uses a role, not a user's credentials |
+| Role Based Access | Lambda uses a role, not a user's credentials |
 | Defense in Depth | Network (SG) + Identity (IAM) + Storage (S3) controls together |
