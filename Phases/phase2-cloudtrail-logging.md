@@ -3,7 +3,7 @@
 ## Objective
 
 Enable comprehensive audit logging across the entire AWS account so that
-every action — successful or failed — is recorded, timestamped, and stored
+every action like successful or failed is recorded, timestamped, and stored
 for investigation. CloudTrail is the foundation that all later phases
 depend on.
 
@@ -13,9 +13,9 @@ depend on.
 
 CloudTrail records every AWS API call made in your account.
 
-> Think of CloudTrail as a **CCTV camera for AWS**.
-> Every login, every resource change, every permission update —
-> CloudTrail writes it to a log.
+- Think of CloudTrail as a **CCTV camera for AWS**.
+- Every login, every resource change, every permission update
+- CloudTrail writes it to a log.
 
 Examples of events CloudTrail records:
 
@@ -43,16 +43,16 @@ question: *"Who did this, when, and from where?"*
 | Setting | Value | Why |
 |---|---|---|
 | Trail Name | `SecurityLabTrail` | Identifies this trail |
-| Apply to All Regions | ✅ Enabled | Catches activity in every region, not just one |
-| Log File Validation | ✅ Enabled | Detects if log files are tampered with |
+| Apply to All Regions | Enabled | Catches activity in every region, not just one |
+| Log File Validation | Enabled | Detects if log files are tampered with |
 | S3 Bucket | `security-monitoring-lab` | Stores log files durably |
 
-### Why Multi-Region?
+### Why Multi Region?
 
-Attackers often operate in regions that aren't your primary region —
+Attackers often operate in regions that aren't your primary region
 either because they don't know which region you use, or because they're
-trying to evade detection. A single-region trail misses all of that.
-Always enable all-region logging.
+trying to evade detection. A single region trail misses all of that.
+Always enable all region logging.
 
 ### Why Log File Validation?
 
@@ -61,8 +61,7 @@ AWS. If someone deletes or modifies a log file later, validation
 detects the tampering. This is a critical control for any compliance
 or legal investigation.
 
-> 📸 Screenshot → `screenshots/06-cloudtrail-created.png`
-> 📸 Screenshot → `screenshots/07-cloudtrail-trail.png`
+Screenshot → [CloudTrail Created](../ScreenShots/6.Cloudtrail%20Created%20.png)
 
 ---
 
@@ -99,7 +98,8 @@ a real incident.
 - Is the login time expected? (Middle of the night login = suspicious)
 - Did a failed login immediately precede a successful one? (Brute force)
 
-> 📸 Screenshot → `screenshots/08-console-login-event.png`
+Screenshot → [Console Login Event](../ScreenShots/7.Console%20Login%20Event.png)
+
 
 ---
 
@@ -122,7 +122,7 @@ a real incident.
 }
 ```
 
-> 📸 Screenshot → `screenshots/10-s3-access-event.png`
+Screenshot → [S3 Event](../ScreenShots/8.S3%20Event.png)
 
 ---
 
@@ -156,7 +156,7 @@ a real incident.
 An attacker who gains console access will often open a port (e.g., SSH
 on `0.0.0.0/0`) to maintain access. CloudTrail catches this immediately.
 
-> 📸 Screenshot → `screenshots/11-security-group-change.png`
+Screenshot → [Security Group Event](../ScreenShots/9.Security%20group%20Event.png)
 
 ---
 
@@ -175,8 +175,6 @@ on `0.0.0.0/0`) to maintain access. CloudTrail catches this immediately.
   }
 }
 ```
-
-> 📸 Screenshot → `screenshots/09-iam-policy-change.png`
 
 ---
 
@@ -210,15 +208,3 @@ investigations.
 | Tamper Detection | Log file validation detects modified logs |
 | Forensic Evidence | CloudTrail provides the evidence chain for investigations |
 | Multi-region Coverage | No blind spots across the account |
-
----
-
-## Phase 2 Checklist
-
-- [ ] CloudTrail trail created — multi-region, log validation enabled
-- [ ] Logs delivering to `security-monitoring-lab` S3 bucket
-- [ ] Console login event captured and investigated
-- [ ] S3 file upload event captured
-- [ ] Security group change events captured (both add and remove)
-- [ ] IAM policy event captured
-- [ ] All six screenshots saved to `screenshots/`
