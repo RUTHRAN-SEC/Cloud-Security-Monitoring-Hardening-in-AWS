@@ -36,7 +36,7 @@ Once enabled, GuardDuty automatically begins analyzing:
 - Amazon VPC Flow Logs
 - DNS query logs
 
-No separate configuration of log sources is needed — GuardDuty pulls
+No separate configuration of log sources is needed GuardDuty pulls
 these from its own internal data pipeline.
 
 ---
@@ -52,8 +52,7 @@ finding type. We used this to:
 2. Test the EventBridge → Lambda → SNS alert pipeline (Phase 6)
 3. Capture evidence screenshots for the portfolio
 
-- Sample findings are clearly marked `[SAMPLE]` and do not indicate
-- real threats in your account.
+- Sample findings are clearly marked `[SAMPLE]` and do not indicate that as real threats in your account.
 
 ScreenShot - [GuardDuty Sample Findings](../ScreenShots/10.%20GuardDuty%20Sample%20Findings%20.png)
 ScreenShot - [GuardDuty Severity Finding](../ScreenShots/11.GuardDuty%20severity%20finding.png)
