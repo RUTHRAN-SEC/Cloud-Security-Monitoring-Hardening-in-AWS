@@ -1,4 +1,4 @@
-# Phase 4 — S3 Misconfiguration Detection
+# Phase 4: S3 Misconfiguration Detection
 
 ## Objective
 
@@ -26,7 +26,7 @@ This phase teaches you:
 
 ---
 
-## Step 1 — Disable Block Public Access
+## Step 1: Disable Block Public Access
 
 **AWS Console → S3 → `security-monitoring-lab` → Permissions**
 
@@ -38,7 +38,7 @@ guard that prevents the next step from working.
 
 ---
 
-## Step 2 — Add the Public Bucket Policy
+## Step 2: Add the Public Bucket Policy
 
 **AWS Console → S3 → Permissions → Bucket Policy → Edit**
 
