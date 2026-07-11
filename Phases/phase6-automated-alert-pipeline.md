@@ -1,10 +1,10 @@
-# Phase 6 — Automated Alert Pipeline
+# Phase 6: Automated Alert Pipeline
 
 ## Objective
 
-Build a fully automated detection-to-notification pipeline so that when
+Build a fully automated detection to notification pipeline so that when
 GuardDuty finds a threat, the security team receives an email alert
-within minutes — with no manual monitoring of the console required.
+within minutes with no manual monitoring of the console required.
 
 ---
 
@@ -12,10 +12,9 @@ within minutes — with no manual monitoring of the console required.
 
 Manual console checks are not a security strategy:
 
-- Attackers can move from initial access to full account compromise in
-  under an hour
+- Attackers can move from initial access to full account compromise in under an hour
 - Nobody watches the GuardDuty console 24/7
-- Human delays in detection = larger blast radius
+- Human delays in detection larger blast radius
 
 The pipeline built in this phase closes that gap.
 
@@ -49,7 +48,7 @@ the full end-to-end flow.
 
 ---
 
-## Step 1 — Create the SNS Topic
+## Step 1: Create the SNS Topic
 
 **AWS Console → SNS → Topics → Create Topic**
 
@@ -62,11 +61,12 @@ the full end-to-end flow.
 Security alerts don't require strict ordering — we care about delivery
 speed, not sequence. Standard topics deliver faster and at higher throughput.
 
-> 📸 Screenshot → `screenshots/29-sns-topic.png`
+Screenshot → [SNS Topic Created](../ScreenShots/18.SNS%20topic%20created.png)
+
 
 ---
 
-## Step 2 — Subscribe Your Email
+## Step 2: Subscribe Your Email
 
 **AWS Console → SNS → `SecurityAlertsTopic` → Create Subscription**
 
@@ -75,17 +75,15 @@ speed, not sequence. Standard topics deliver faster and at higher throughput.
 | Protocol | Email |
 | Endpoint | `your-email@example.com` |
 
-### ⚠️ Confirm the Subscription
+### Confirm the Subscription
 
 AWS sends a confirmation email immediately after creating the subscription.
 **You must click "Confirm subscription" in that email.** Until you do,
 SNS will not deliver alerts to your address.
 
-> 📸 Screenshot → `screenshots/30-email-subscription.png`
-
 ---
 
-## Step 3 — Build the Lambda Function
+## Step 3: Build the Lambda Function
 
 **AWS Console → Lambda → Create Function**
 
@@ -151,12 +149,12 @@ Description:
 | `detail.get('description', ...)` | Extracts the full description |
 | `sns.publish(...)` | Sends the formatted alert to the SNS topic |
 
-> 📸 Screenshot → `screenshots/32-lambda-created.png`
-> 📸 Screenshot → `screenshots/33-lambda-code.png`
+Screenshot → [Lambda Created](../ScreenShots/19.Lambda%20created.png)
+Screenshot → [Lambda Environment Variables](../ScreenShots/20.Lambda%20environment.png)
 
 ---
 
-## Step 4 — Create the EventBridge Rule
+## Step 4: Create the EventBridge Rule
 
 **AWS Console → EventBridge → Rules → Create Rule**
 
@@ -175,7 +173,7 @@ Description:
 }
 ```
 
-This pattern matches every GuardDuty finding — regardless of finding type,
+This pattern matches every GuardDuty finding regardless of finding type,
 severity, or affected resource. Every finding triggers the Lambda function.
 
 ### Target
@@ -186,11 +184,9 @@ severity, or affected resource. Every finding triggers the Lambda function.
 | Service | Lambda function |
 | Function | `GuardDutyAlertProcessor` |
 
-> 📸 Screenshot → `screenshots/34-lambda-trigger.png`
-
 ---
 
-## Step 5 — End-to-End Test
+## Step 5: End-to-End Test
 
 **AWS Console → GuardDuty → Settings → Generate sample findings**
 
@@ -214,15 +210,15 @@ it is being used to perform SSH brute force attacks...
 
 If the email arrives, the full pipeline is working:
 
-```
-✅ GuardDuty detected the finding
-✅ EventBridge matched the pattern
-✅ Lambda was invoked
-✅ Lambda published to SNS
-✅ SNS delivered the email
-```
 
-> 📸 Screenshot → `screenshots/35-alert-email.png`
+- GuardDuty detected the finding
+- EventBridge matched the pattern
+- Lambda was invoked
+- Lambda published to SNS
+- SNS delivered the email
+
+
+Screenshot → [SNS Email Received](../ScreenShots/24.SNS%20Email%20Received.png)
 
 ---
 
@@ -249,16 +245,3 @@ If the email does not arrive:
 | Real-Time Notification | SNS delivers alerts within minutes of a finding |
 | Separation of Concerns | Each service has one job: detect, route, process, notify |
 | Least Privilege | Lambda role scoped to SNS publish only |
-
----
-
-## Phase 6 Checklist
-
-- [ ] SNS topic `SecurityAlertsTopic` created
-- [ ] Email subscription created and confirmed
-- [ ] Lambda function `GuardDutyAlertProcessor` deployed with correct code
-- [ ] `SNS_TOPIC_ARN` environment variable set
-- [ ] EventBridge rule `GuardDutyFindingsRule` created with correct pattern
-- [ ] Lambda added as EventBridge target
-- [ ] End-to-end test passed — sample finding triggered an email
-- [ ] All four screenshots saved to `screenshots/`
