@@ -97,9 +97,7 @@ aws-security-lab/
 
 All evidence screenshots live in [`ScreenShots/`](ScreenShots/), numbered in the
 order they're taken throughout the phases. Each phase doc lists the exact
-filenames expected for that phase — drop your own screenshots in as you complete
-each step. See [`ScreenShots/README.md`](ScreenShots/README.md) for the full
-checklist.
+filenames expected for that phase.
 
 ---
 
@@ -112,13 +110,6 @@ checklist.
 | Security Group | Open SSH | Restricted |
 | MFA | Disabled | Enabled |
 | CloudTrail | Editable | Protected |
-
----
-
-## Lessons Learned
-
-See the [phase11-lessons-learned.md](phases/phase11-lessons-learned.md) for a write up template fill this in with your own takeaways once you've completed
-the lab. This is one of the most important sections for interviews.
 
 ---
 
