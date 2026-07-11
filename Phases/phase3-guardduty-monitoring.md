@@ -17,7 +17,7 @@ A common point of confusion:
 | **Role** | Recorder | Detector |
 | **What it does** | Writes down everything that happens | Reads the logs and says "this looks suspicious" |
 | **Output** | Audit log entries | Security findings with severity ratings |
-| **Requires action?** | No — it logs passively | Yes — it actively analyzes |
+| **Requires action?** | No, it logs passively | Yes, it actively analyzes |
 | **Analogy** | CCTV that records footage | Security guard watching the footage |
 
 CloudTrail tells you *what happened*.
