@@ -52,7 +52,7 @@ diagram and data flow explanation.
 
 | Phase | Topic | Docs |
 |---|---|---|
-| 1 | Environment Setup (EC2, S3, IAM, Security Groups) | [phase1-environment-setup.md](phases/phase1-environment-setup.md) |
+| 1 | Environment Setup (EC2, S3, IAM, Security Groups) | [Phase 1 – Environment Setup](./phase%201%20environment%20setup.md) |
 | 2 | CloudTrail Logging | [phase2-cloudtrail-logging.md](phases/phase2-cloudtrail-logging.md) |
 | 3 | GuardDuty Monitoring | [phase3-guardduty-monitoring.md](phases/phase3-guardduty-monitoring.md) |
 | 4 | S3 Misconfiguration Detection | [phase4-s3-misconfiguration.md](phases/phase4-s3-misconfiguration.md) |
@@ -61,8 +61,6 @@ diagram and data flow explanation.
 | 7 | SNS Alerting | [phase7-sns-alerting.md](phases/phase7-sns-alerting.md) |
 | 8 | Lambda Automation | [phase8-lambda-automation.md](phases/phase8-lambda-automation.md) |
 | 9 | Security Hardening | [phase9-security-hardening.md](phases/phase9-security-hardening.md) |
-| 10 | Threat Investigation Scenarios | [phase10-threat-investigation.md](phases/phase10-threat-investigation.md) |
-| 11 | Lessons Learned & Future Improvements | [phase11-lessons-learned.md](phases/phase11-lessons-learned.md) |
 
 ---
 
