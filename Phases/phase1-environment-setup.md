@@ -1,4 +1,4 @@
-# Phase 1 - Build the Base Infrastructure
+# Phase 1: Build the Base Infrastructure
 
 ## Objective
 
