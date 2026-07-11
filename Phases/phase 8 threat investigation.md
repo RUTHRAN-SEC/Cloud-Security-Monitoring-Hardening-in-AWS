@@ -1,9 +1,9 @@
-# Phase 10 — Threat Investigation Scenarios
+# Phase 8: Threat Investigation Scenarios
 
 ## Objective
 
 Write up three complete incident investigations using the evidence collected
-throughout the lab — tying together CloudTrail events, GuardDuty findings,
+throughout the lab tying together CloudTrail events, GuardDuty findings,
 and detection tool alerts into the kind of narrative a SOC analyst would
 produce for an incident report.
 
@@ -55,20 +55,20 @@ it within minutes.
 
 ### Investigation Steps
 
-**Step 1 — CloudTrail**
+**Step 1: CloudTrail**
 Search for `PutBucketPolicy` on bucket `security-monitoring-lab`.
 Identify: who applied the policy (`userIdentity.userName`), when (`eventTime`),
 and from which IP (`sourceIPAddress`).
 
-**Step 2 — Review the Policy**
+**Step 2: Review the Policy**
 Read the `requestParameters.bucketPolicy` in the CloudTrail event.
 Does it contain `"Principal": "*"`? If yes, this is a full public exposure.
 
-**Step 3 — Access Analyzer**
+**Step 3: Access Analyzer**
 Confirm the tool's finding: which principal has access, what actions
 are permitted, and whether any conditions restrict access.
 
-**Step 4 — Blast Radius Assessment**
+**Step 4: Blast Radius Assessment**
 Search CloudTrail for `GetObject` events on this bucket after the policy
 was applied. Are there any requests from external/unknown IP addresses?
 If yes, data may have already been exfiltrated.
@@ -83,7 +83,7 @@ If yes, data may have already been exfiltrated.
 
 ---
 
-## Scenario 2 — IAM Privilege Escalation
+## Scenario 2: IAM Privilege Escalation
 
 ### What Happened
 
@@ -105,17 +105,17 @@ created, establishing a persistent backdoor with full admin privileges.
 
 | Event | Significance |
 |---|---|
-| `AttachUserPolicy` with `AdministratorAccess` ARN | 🔴 Direct privilege escalation |
-| `CreateAccessKey` | 🔴 Persistence established |
-| `AssumeRole` | 🟠 Lateral movement attempt |
+| `AttachUserPolicy` with `AdministratorAccess` ARN | Direct privilege escalation |
+| `CreateAccessKey` | Persistence established |
+| `AssumeRole` | Lateral movement attempt |
 
 ### Investigation Steps
 
-**Step 1 — Alert Source**
+**Step 1: Alert Source**
 GuardDuty or a CloudTrail EventBridge rule fires on `AttachUserPolicy`.
 The alert identifies `LowPrivilegeUser` and the `AdministratorAccess` ARN.
 
-**Step 2 — CloudTrail Pivot**
+**Step 2: CloudTrail Pivot**
 Search all CloudTrail events by `LowPrivilegeUser` in the 30 minutes
 following the `AttachUserPolicy` event. What did they do with their
 new admin privileges?
@@ -125,11 +125,11 @@ Key questions:
 - Did they access or exfiltrate data from S3?
 - Did they modify security controls (disable CloudTrail, change security groups)?
 
-**Step 3 — Verify Authorization**
+**Step 3: Verify Authorization**
 Was this change authorized? Check your change management system or
 ask the user's manager. If unauthorized, treat it as an active incident.
 
-**Step 4 — Access Key Scope**
+**Step 4: Access Key Scope**
 The access keys created in step 09:07 are usable from anywhere in the world.
 Search CloudTrail for API calls using the key ID (`AKIA...`) from IP addresses
 outside your known corporate ranges.
@@ -143,12 +143,12 @@ outside your known corporate ranges.
 ### Remediation
 
 1. Rotate credentials for any resources the user touched
-2. Review all IAM change permissions — who else has `iam:AttachUserPolicy`?
+2. Review all IAM change permissions who else has `iam:AttachUserPolicy`?
 3. Implement AWS Config rule: alert on any user receiving admin-level policies
 
 ---
 
-## Scenario 3 — Unauthorized API Access
+## Scenario 3: Unauthorized API Access
 
 ### What Happened
 
@@ -178,23 +178,23 @@ permission for.
 
 ### Investigation Steps
 
-**Step 1 — Identify the Source IP**
+**Step 1: Identify the Source IP**
 Look up the `sourceIPAddress` in threat intelligence:
 - Is it on a known malicious IP list?
 - Is it associated with a VPN, proxy, or Tor exit node?
 - Is it from an unexpected geography?
 
-**Step 2 — Identify the Target**
+**Step 2: Identify the Target**
 Which APIs were called? Which resources were targeted?
 - `iam:ListUsers` — reconnaissance, mapping the account
 - `ec2:DescribeInstances` — reconnaissance, mapping compute
 - `s3:ListBuckets` — reconnaissance, looking for data stores
 
-**Step 3 — Identify the Identity Used**
+**Step 3: Identify the Identity Used**
 What credentials were used? Is the `userIdentity` a valid IAM user?
 If an access key is being used from an unknown IP, it may be compromised.
 
-**Step 4 — Assess Success/Failure**
+**Step 4: Assess Success/Failure**
 Did any of the calls succeed? `AccessDenied` means no damage was done.
 But if *any* call returned success, assess what was accessed or changed.
 
@@ -219,14 +219,3 @@ But if *any* call returned success, assess what was accessed or changed.
 | Containment vs Remediation | Stopping the active threat vs fixing the root cause |
 | Threat Intelligence | Using IP reputation to contextualize findings |
 | Forensic Evidence Chain | CloudTrail events as admissible, tamper-evident evidence |
-
----
-
-## Phase 10 Checklist
-
-- [ ] Scenario 1 write-up completed with your own actual timestamps
-- [ ] Scenario 2 write-up completed with your own actual timestamps
-- [ ] Scenario 3 write-up completed with your own actual timestamps
-- [ ] CloudTrail events cross-referenced for each scenario
-- [ ] Remediation steps actually performed (not just described)
-- [ ] Each scenario reviewed and ready to discuss in an interview
