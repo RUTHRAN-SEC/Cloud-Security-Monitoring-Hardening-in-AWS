@@ -52,7 +52,7 @@ diagram and data flow explanation.
 
 | Phase | Topic | Docs |
 |---|---|---|
-| 1 | Environment Setup (EC2, S3, IAM, Security Groups) | [Phase 1 – Environment Setup](./phase%201%20environment%20setup.md) |
+| 1 | Environment Setup (EC2, S3, IAM, Security Groups) | [Phase 1 – Environment Setup](./Phases/phase%201%20environment%20setup.md) |
 | 2 | CloudTrail Logging | [phase2-cloudtrail-logging.md](phases/phase2-cloudtrail-logging.md) |
 | 3 | GuardDuty Monitoring | [phase3-guardduty-monitoring.md](phases/phase3-guardduty-monitoring.md) |
 | 4 | S3 Misconfiguration Detection | [phase4-s3-misconfiguration.md](phases/phase4-s3-misconfiguration.md) |
