@@ -1,4 +1,4 @@
-# Phase 2 — CloudTrail Audit Logging
+# Phase 2: CloudTrail Audit Logging
 
 ## Objective
 
@@ -73,7 +73,7 @@ a real incident.
 
 ---
 
-### Event 1 — Console Login
+### Event 1: Console Login
 
 **Action taken:** Logged into the AWS Console as `SecurityAnalyst`
 
@@ -103,7 +103,7 @@ Screenshot → [Console Login Event](../ScreenShots/7.Console%20Login%20Event.pn
 
 ---
 
-### Event 2 — S3 File Upload
+### Event 2: S3 File Upload
 
 **Action taken:** Uploaded `test.txt` to `security-monitoring-lab`
 
@@ -126,7 +126,7 @@ Screenshot → [S3 Event](../ScreenShots/8.S3%20Event.png)
 
 ---
 
-### Event 3 — Security Group Change
+### Event 3: Security Group Change
 
 **Action taken:** Added port 8080 inbound rule, then removed it
 
@@ -160,7 +160,7 @@ Screenshot → [Security Group Event](../ScreenShots/9.Security%20group%20Event.
 
 ---
 
-### Event 4 — IAM Policy Change
+### Event 4: IAM Policy Change
 
 **Action taken:** Observed the `AttachUserPolicy` event from Phase 5 setup
 
