@@ -22,7 +22,7 @@ This phase teaches you:
 - What the findings look like so you recognize them in a real environment
 - How to remediate it
 
-> **Important:** Perform this in an isolated lab account with no real data in the bucket. Revert all changes at the end of this phase or in Phase 9 (Security Hardening). Never leave a public policy on a bucket in a real environment.
+> **Important:** Perform this in an isolated lab account with no real data in the bucket. Revert all changes at the end of this phase or in Phase 7 (Security Hardening). Never leave a public policy on a bucket in a real environment.
 
 ---
 
