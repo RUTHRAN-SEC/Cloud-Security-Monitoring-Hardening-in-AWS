@@ -1,9 +1,9 @@
-# Phase 5 — IAM Privilege Escalation Detection
+# Phase 5: IAM Privilege Escalation Detection
 
 ## Objective
 
-Simulate a real-world IAM privilege escalation attack — where a low-privilege
-user gains administrator-level access — and investigate it using CloudTrail
+Simulate a real world IAM privilege escalation attack where a low-privilege
+user gains administrator level access and investigate it using CloudTrail
 the way a SOC analyst would in a live incident.
 
 ---
@@ -16,14 +16,14 @@ were originally granted. In AWS, this is dangerous because:
 - A read-only user who escalates to admin can delete everything in the account
 - They can create new users or access keys that persist even after the
   original compromise is discovered
-- It can happen silently — no alerts fire unless you're specifically watching
+- It can happen silently no alerts fire unless you're specifically watching
   for IAM changes
 
 This is one of the most common attack patterns in cloud environments.
 
 ---
 
-## Setup — Create the Low-Privilege User
+## Setup: Create the Low-Privilege User
 
 **AWS Console → IAM → Users → Create User**
 
@@ -36,13 +36,13 @@ This is one of the most common attack patterns in cloud environments.
 This user represents a developer, contractor, or compromised service account
 with minimal AWS permissions.
 
-> 📸 Screenshot → `screenshots/22-lowpriv-user.png`
+Screenshot → [Low Privilege User Created](../ScreenShots/14.Low%20privilege%20user%20Created.png)
 
 ---
 
-## The Attack — Step by Step
+## The Attack: Step by Step
 
-### Attack Step 1 — Escalate to Administrator
+### Attack Step 1: Escalate to Administrator
 
 **Action:** Attach `AdministratorAccess` policy to `LowPrivilegeUser`
 
@@ -73,16 +73,17 @@ would be performed by:
 **Key observation:** `AdministratorAccess` being attached to any user
 should be treated as a critical security event requiring immediate investigation.
 
-> 📸 Screenshot → `screenshots/23-admin-policy-attachment.png`
+Screenshot → [Administrator Access Attached to Low Privilege User](../ScreenShots/15.Administrator%20access%20attached%20to%20low%20privilege%20user.png)
+
 
 ---
 
-### Attack Step 2 — Create Access Keys (Persistence)
+### Attack Step 2: Create Access Keys (Persistence)
 
 **Action:** Create programmatic access keys for `LowPrivilegeUser`
 
 After escalating, a real attacker creates access keys immediately.
-This creates a persistent backdoor: even if the password is changed or
+This creates a persistent backdoor even if the password is changed or
 the console session is revoked, the access keys continue to work.
 
 **CloudTrail Event Generated:**
@@ -107,7 +108,7 @@ Access keys never expire unless explicitly deleted or deactivated. An
 attacker can use these keys from anywhere in the world, at any time,
 with full `AdministratorAccess` to your AWS account.
 
-> 📸 Screenshot → `screenshots/24-create-access-key.png`
+Screenshot → [Attach User Policy Event](../ScreenShots/16.Attach%20user%20policy%20event.png)
 
 ---
 
@@ -131,7 +132,8 @@ After getting admin access, attackers often assume other roles to:
 }
 ```
 
-> 📸 Screenshot → `screenshots/25-assume-role-event.png`
+Screenshot → [Attach User Policy JSON](../ScreenShots/17.Attach%20user%20policy%20json.png)
+
 
 ---
 
@@ -180,17 +182,17 @@ Step 6 — Remediation
 
 ## CloudTrail Indicators of Privilege Escalation
 
-When investigating an IAM incident, these are the highest-value events
+When investigating an IAM incident, these are the highest value events
 to search for:
 
 | Event | Severity | What It Indicates |
 |---|---|---|
-| `AttachUserPolicy` with admin ARN | 🔴 Critical | Direct privilege escalation |
-| `CreateAccessKey` | 🔴 Critical | Attacker creating persistence |
-| `CreateUser` | 🔴 Critical | Attacker creating a backdoor account |
-| `AssumeRole` to an unexpected role | 🟠 High | Lateral movement |
-| `PutUserPolicy` | 🟠 High | Inline policy added directly to user |
-| `CreatePolicyVersion` | 🟠 High | Existing policy modified to add permissions |
+| `AttachUserPolicy` with admin ARN | Critical | Direct privilege escalation |
+| `CreateAccessKey` | Critical | Attacker creating persistence |
+| `CreateUser` | Critical | Attacker creating a backdoor account |
+| `AssumeRole` to an unexpected role | High | Lateral movement |
+| `PutUserPolicy` | High | Inline policy added directly to user |
+| `CreatePolicyVersion` | High | Existing policy modified to add permissions |
 
 ---
 
@@ -204,15 +206,3 @@ to search for:
 | Lateral Movement | AssumeRole used to pivot to other identities |
 | Forensic Investigation | CloudTrail used to reconstruct the full attack chain |
 | Incident Response | Containment → Remediation steps defined |
-
----
-
-## Phase 5 Checklist
-
-- [ ] `LowPrivilegeUser` created with `ReadOnlyAccess`
-- [ ] `AdministratorAccess` attached — CloudTrail `AttachUserPolicy` event captured
-- [ ] Access key created — CloudTrail `CreateAccessKey` event captured
-- [ ] `AssumeRole` event generated and captured
-- [ ] Full investigation workflow run and documented
-- [ ] User access revoked (keys deactivated, admin policy detached) after evidence captured
-- [ ] All four screenshots saved to `screenshots/`
