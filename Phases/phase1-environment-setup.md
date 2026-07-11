@@ -21,7 +21,7 @@ from the start with security best practices.
 
 ---
 
-## Step 1 — Create the EC2 Instance
+## Step 1: Create the EC2 Instance
 
 **AWS Console → EC2 → Instances → Launch Instance**
 
@@ -46,7 +46,7 @@ Screenshot → [EC2 Instance is Running](../ScreenShots/1.EC2%20instaces%20is%20
 
 ---
 
-## Step 2 — Create the Security Group
+## Step 2: Create the Security Group
 
 **AWS Console → EC2 → Security Groups → Create Security Group**
 
@@ -77,7 +77,7 @@ Screenshot → [Security Group Rules Created](../ScreenShots/5.Created%20rules%2
 
 ---
 
-## Step 3 — Create the S3 Bucket
+## Step 3: Create the S3 Bucket
 
 **AWS Console → S3 → Create Bucket**
 
@@ -110,7 +110,7 @@ Screenshot → [S3 Bucket Created](../ScreenShots/2.S3%20Bucket%20Created.png)
 
 ---
 
-## Step 4 — Create the IAM User
+## Step 4: Create the IAM User
 
 **AWS Console → IAM → Users → Create User**
 
@@ -145,7 +145,7 @@ Screenshot → [Security Analyst Role Created in IAM](../ScreenShots/3.Security%
 
 ---
 
-## Step 5 — Create the Lambda Execution Role
+## Step 5: Create the Lambda Execution Role
 
 **AWS Console → IAM → Roles → Create Role**
 
