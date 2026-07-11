@@ -53,14 +53,13 @@ diagram and data flow explanation.
 | Phase | Topic | Docs |
 |---|---|---|
 | 1 | Environment Setup (EC2, S3, IAM, Security Groups) | [Phase 1 – Environment Setup](./Phases/phase%201%20environment%20setup.md) |
-| 2 | CloudTrail Logging | [phase2-cloudtrail-logging.md](phases/phase2-cloudtrail-logging.md) |
-| 3 | GuardDuty Monitoring | [phase3-guardduty-monitoring.md](phases/phase3-guardduty-monitoring.md) |
-| 4 | S3 Misconfiguration Detection | [phase4-s3-misconfiguration.md](phases/phase4-s3-misconfiguration.md) |
-| 5 | IAM Privilege Escalation Detection | [phase5-iam-privilege-escalation.md](phases/phase5-iam-privilege-escalation.md) |
-| 6 | Unauthorized API Request Detection | [phase6-unauthorized-api-requests.md](phases/phase6-unauthorized-api-requests.md) |
-| 7 | SNS Alerting | [phase7-sns-alerting.md](phases/phase7-sns-alerting.md) |
-| 8 | Lambda Automation | [phase8-lambda-automation.md](phases/phase8-lambda-automation.md) |
-| 9 | Security Hardening | [phase9-security-hardening.md](phases/phase9-security-hardening.md) |
+| 2 | CloudTrail Logging | [Phase 2 – CloudTrail Logging](./Phases/phase%202%20cloudtrail%20logging.md) |
+| 3 | GuardDuty Monitoring | [Phase 3 – GuardDuty Monitoring](./Phases/phase%203%20guardduty%20monitoring.md) |
+| 4 | S3 Misconfiguration Detection | [Phase 4 – S3 Misconfiguration](./Phases/phase%204%20s3%20misconfiguration.md) |
+| 5 | IAM Privilege Escalation Detection | [Phase 5 – IAM Privilege Escalation](./Phases/phase%205%20iam%20privilege%20escalation.md) |
+| 6 | SNS Alerting | [Phase 6 – Automated Alert Pipeline](./phase%206%20automated%20alert%20pipeline.md) |
+| 7 | Security Hardening | [Phase 7 – Security Hardening](./phase%207%20security%20hardening.md) |
+| 8 | Threat Investiagtion | [Phase 8 – Threat Investigation](./phase%208%20Threat%20investigation.md) |
 
 ---
 
@@ -74,18 +73,15 @@ aws-security-lab/
 ├── architecture/
 │   └── architecture.md
 │
-│── phases/
-│       ├── phase1-environment-setup.md
-│       ├── phase2-cloudtrail-logging.md
-│       ├── phase3-guardduty-monitoring.md
-│       ├── phase4-s3-misconfiguration.md
-│       ├── phase5-iam-privilege-escalation.md
-│       ├── phase6-unauthorized-api-requests.md
-│       ├── phase7-sns-alerting.md
-│       ├── phase8-lambda-automation.md
-│       ├── phase9-security-hardening.md
-│       ├── phase10-threat-investigation.md
-│       └── phase11-lessons-learned.md
+├── Phases/
+│   ├── phase 1 environment setup.md
+│   ├── phase 2 cloudtrail logging.md
+│   ├── phase 3 guardduty monitoring.md
+│   ├── phase 4 s3 misconfiguration.md
+│   ├── phase 5 iam privilege escalation.md
+│   ├── phase 6 automated alert pipeline.md
+│   ├── phase 7 security hardening.md
+│   └── phase 8 Threat investigation.md
 │
 ├── lambda/
 │   ├── lambda_function.py
