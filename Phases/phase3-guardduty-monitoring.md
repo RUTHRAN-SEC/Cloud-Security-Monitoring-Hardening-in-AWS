@@ -4,7 +4,7 @@
 
 Enable intelligent threat detection that continuously analyzes CloudTrail,
 VPC Flow Logs, and DNS logs to automatically identify suspicious behavior
-— moving beyond simply recording events to actively flagging dangerous ones.
+moving beyond simply recording events to actively flagging dangerous ones.
 
 ---
 
@@ -39,8 +39,6 @@ Once enabled, GuardDuty automatically begins analyzing:
 No separate configuration of log sources is needed — GuardDuty pulls
 these from its own internal data pipeline.
 
-> 📸 Screenshot → `screenshots/12-guardduty-enabled.png`
-
 ---
 
 ## Generating Sample Findings
@@ -54,8 +52,11 @@ finding type. We used this to:
 2. Test the EventBridge → Lambda → SNS alert pipeline (Phase 6)
 3. Capture evidence screenshots for the portfolio
 
-> ⚠️ Sample findings are clearly marked `[SAMPLE]` and do not indicate
-> real threats in your account.
+- Sample findings are clearly marked `[SAMPLE]` and do not indicate
+- real threats in your account.
+
+ScreenShot - [GuardDuty Sample Findings](../ScreenShots/10.%20GuardDuty%20Sample%20Findings%20.png)
+ScreenShot - [GuardDuty Severity Finding](../ScreenShots/11.GuardDuty%20severity%20finding.png)
 
 ---
 
@@ -79,8 +80,6 @@ of the most common attacks against internet-exposed EC2 instances.
 - How many attempts were made and over what time period?
 - Did any attempts succeed? (Check for a `ConsoleLogin` or successful SSH session after the attempts)
 
-> 📸 Screenshot → `screenshots/17-ssh-bruteforce.png`
-
 ---
 
 ### Finding 2 — Port Probe / Reconnaissance
@@ -96,8 +95,6 @@ which services are running — a reconnaissance step before an attack.
 Port scanning itself is not an attack, but it tells an attacker what to
 attack next. Detecting it early allows you to block the source IP before
 an actual exploit attempt.
-
-> 📸 Screenshot → `screenshots/14-port-probe-finding.png`
 
 ---
 
@@ -122,8 +119,6 @@ credentials is unauthorized.
 3. Rotate all credentials
 4. Isolate the EC2 instance for forensic investigation
 
-> 📸 Screenshot → `screenshots/16-credential-misuse.png`
-
 ---
 
 ### Finding 4 — Suspicious API Calls
@@ -135,8 +130,6 @@ credentials is unauthorized.
 API calls associated with known malicious actors or unusual patterns
 (e.g., calling IAM list operations from an unexpected location) are
 being made against the account.
-
-> 📸 Screenshot → `screenshots/15-api-abuse-finding.png`
 
 ---
 
@@ -179,16 +172,3 @@ CloudTrail tells you *exactly what happened*.
 | Continuous Monitoring | GuardDuty runs 24/7 without manual intervention |
 | Severity Triage | Findings are ranked so analysts prioritize High/Critical first |
 | Intelligence Integration | GuardDuty incorporates AWS threat intelligence feeds |
-
----
-
-## Phase 3 Checklist
-
-- [ ] GuardDuty enabled in the account and region
-- [ ] Sample findings generated from Settings
-- [ ] Dashboard screenshot captured
-- [ ] SSH brute force finding reviewed and documented
-- [ ] Port probe finding reviewed and documented
-- [ ] Credential exfiltration finding reviewed and documented
-- [ ] API abuse finding reviewed and documented
-- [ ] Severity levels understood and noted
