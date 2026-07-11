@@ -1,4 +1,4 @@
-# Phase 3 — GuardDuty Threat Detection
+# Phase 3: GuardDuty Threat Detection
 
 ## Objective
 
