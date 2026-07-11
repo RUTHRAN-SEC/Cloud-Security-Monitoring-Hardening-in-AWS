@@ -1,9 +1,9 @@
-# Phase 9 — Security Hardening
+# Phase 7: Security Hardening
 
 ## Objective
 
 Fix every vulnerability deliberately introduced during the lab and apply
-additional hardening controls — proving that you can not only detect
+additional hardening controls proving that you can not only detect
 misconfigurations, but remediate them correctly.
 
 ---
@@ -15,7 +15,7 @@ you close every gap that was opened during earlier phases, and apply
 controls that should have been in place from the start.
 
 In interviews, this phase demonstrates that you understand the full
-security lifecycle — not just running tools, but actually fixing problems.
+security lifecycle not just running tools, but actually fixing problems.
 
 ---
 
@@ -30,12 +30,10 @@ security lifecycle — not just running tools, but actually fixing problems.
 | MFA | Disabled on accounts | Enabled on root and IAM users | New — apply now |
 | CloudTrail | Log file validation | Confirmed enabled + bucket policy protected | Phase 2 (strengthen) |
 
-> 📸 Screenshot → `screenshots/36-before-hardening.png` (capture the misconfigured state before fixing)
-> 📸 Screenshot → `screenshots/37-after-hardening.png` (capture the corrected state)
 
 ---
 
-## Fix 1 — Restore S3 to Private
+## Fix 1: Restore S3 to Private
 
 **What to do:**
 
@@ -48,11 +46,10 @@ security lifecycle — not just running tools, but actually fixing problems.
 3. **Verify with Access Analyzer:**
    IAM → Access Analyzer → the `External Access Granted` finding should now show as Resolved
 
-> 📸 Screenshot → `screenshots/39-s3-block-public-access.png`
 
 ---
 
-## Fix 2 — Revert IAM Privilege Escalation
+## Fix 2: Revert IAM Privilege Escalation
 
 **What to do:**
 
@@ -66,7 +63,7 @@ security lifecycle — not just running tools, but actually fixing problems.
 
 ---
 
-## Fix 3 — Verify Security Group
+## Fix 3: Verify Security Group
 
 **What to verify:**
 
@@ -74,15 +71,15 @@ AWS Console → EC2 → Security Groups → `SecurityLab-SG` → Inbound rules
 
 | Port | Source | Expected State |
 |---|---|---|
-| 22 (SSH) | My IP only | ✅ Should be a specific IP — not `0.0.0.0/0` |
-| 80 (HTTP) | `0.0.0.0/0` | ✅ Acceptable for a web server |
-| 443 (HTTPS) | `0.0.0.0/0` | ✅ Acceptable for a web server |
+| 22 (SSH) | My IP only | Should be a specific IP — not `0.0.0.0/0` |
+| 80 (HTTP) | `0.0.0.0/0` | Acceptable for a web server |
+| 443 (HTTPS) | `0.0.0.0/0` | Acceptable for a web server |
 
 If SSH shows `0.0.0.0/0`, edit the rule and restrict it to your current IP.
 
 ---
 
-## Fix 4 — Enable MFA
+## Fix 4: Enable MFA
 
 MFA (Multi-Factor Authentication) requires a second factor (an authenticator
 app code) in addition to a password. Even if a password is stolen, an
@@ -94,11 +91,9 @@ AWS Console → Account (top right) → Security credentials → Multi-factor au
 **Enable on IAM users with console access:**
 IAM → Users → `SecurityAnalyst` → Security credentials → Assigned MFA device → Manage
 
-> 📸 Screenshot → `screenshots/38-mfa-enabled.png`
-
 ---
 
-## Fix 5 — Protect CloudTrail Logs
+## Fix 5: Protect CloudTrail Logs
 
 **Confirm log file validation is enabled:**
 CloudTrail → `SecurityLabTrail` → General details → Log file validation: Enabled ✅
@@ -150,7 +145,7 @@ After completing all fixes, verify each control:
 
 | Control | How to Verify |
 |---|---|
-| S3 private | Try accessing the bucket URL in an incognito browser — should get Access Denied |
+| S3 private | Try accessing the bucket URL in an incognito browser should get Access Denied |
 | IAM reverted | IAM → `LowPrivilegeUser` → Permissions → only ReadOnlyAccess (or user deleted) |
 | Access keys gone | IAM → `LowPrivilegeUser` → Security credentials → no active keys |
 | SSH restricted | EC2 → Security Groups → SSH source is not `0.0.0.0/0` |
@@ -169,19 +164,3 @@ After completing all fixes, verify each control:
 | Log Integrity | CloudTrail log bucket hardened against deletion and tampering |
 | Principle of Least Privilege | IAM reverted to minimum required permissions |
 | Private by Default | S3 returned to private state |
-
----
-
-## Phase 9 Checklist
-
-- [ ] S3 public policy removed
-- [ ] S3 Block Public Access re-enabled on all four settings
-- [ ] `AdministratorAccess` detached from `LowPrivilegeUser`
-- [ ] Access keys deactivated and deleted
-- [ ] Security group SSH verified as My IP only
-- [ ] MFA enabled on root account
-- [ ] MFA enabled on `SecurityAnalyst` IAM user
-- [ ] CloudTrail log file validation confirmed
-- [ ] CloudTrail log bucket policy hardened
-- [ ] IAM Access Analyzer shows no active findings
-- [ ] All four screenshots saved to `screenshots/`
